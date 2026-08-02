@@ -35,3 +35,6 @@ Successfully designed a **Personal Environmental Health Analyzer dashboard conce
 ---
 
 ⭐ Thank you for checking out my Day 8 progress! More exciting AI projects and dashboards coming tomorrow. 🚀
+## Dashboard Preview
+
+![Personal Environmental Health Analyzer](./ChatGPT%20Image%20Aug%202,%202026,%2012_55_39%20PM.png)

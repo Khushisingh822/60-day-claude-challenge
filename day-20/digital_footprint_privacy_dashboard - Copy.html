@@ -1,0 +1,225 @@
+<style>
+:root{
+  --bg:#07111f;--panel:#0d1a2b;--panel2:#101f33;--line:#1d3048;--text:#eef5ff;
+  --muted:#8ea3bd;--cyan:#45d6ff;--blue:#6c8cff;--green:#35d39a;--yellow:#f5c451;
+  --orange:#ff9d57;--red:#ff5f73;--purple:#b084ff;--shadow:0 18px 55px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 15% 0%,#142a48 0,#07111f 38%,#050b14 100%);color:var(--text);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,select{font:inherit}
+button{cursor:pointer}
+.app{display:grid;grid-template-columns:245px 1fr;min-height:100vh}
+.sidebar{border-right:1px solid var(--line);background:rgba(6,14,25,.78);backdrop-filter:blur(18px);padding:24px 16px;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:17px;margin:0 8px 28px}
+.logo{width:36px;height:36px;border:1px solid #2f6f8e;border-radius:11px;display:grid;place-items:center;background:linear-gradient(145deg,#123552,#0b1728);box-shadow:0 0 24px #45d6ff18}
+.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:var(--muted);padding:11px 12px;border-radius:10px;text-align:left;display:flex;gap:10px;align-items:center}.nav button:hover,.nav button.active{background:#13243a;color:#fff}
+.side-note{position:absolute;left:16px;right:16px;bottom:20px;padding:13px;border:1px solid var(--line);border-radius:13px;color:var(--muted);font-size:11px;background:#0a1727}
+.main{padding:26px;max-width:1500px;width:100%;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:22px}
+.eyebrow{color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:29px;line-height:1.1;margin:5px 0 6px;letter-spacing:-.03em}
+.sub{color:var(--muted);margin:0;max-width:780px}
+.actions{display:flex;gap:9px}.btn{border:1px solid var(--line);background:#0d1b2e;color:#eaf3ff;border-radius:9px;padding:9px 12px}.btn:hover{border-color:#37627e}.btn.primary{background:linear-gradient(135deg,#147da2,#5b69d9);border:0}
+.grid{display:grid;gap:16px}.metrics{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}
+.card{background:linear-gradient(180deg,rgba(16,31,51,.88),rgba(9,20,34,.92));border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.metric{min-height:150px;position:relative;overflow:hidden}.metric:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-65px;bottom:-70px;background:#45d6ff0d}
+.label{color:var(--muted);font-size:12px;font-weight:650}.big{font-size:38px;font-weight:850;letter-spacing:-.04em;margin-top:12px}.unit{font-size:12px;color:var(--muted);margin-left:3px}
+.badge{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;margin-top:6px;border:1px solid transparent}
+.green{color:var(--green);background:#35d39a12;border-color:#35d39a30}.yellow{color:var(--yellow);background:#f5c45112;border-color:#f5c45130}.orange{color:var(--orange);background:#ff9d5712;border-color:#ff9d5730}.red{color:var(--red);background:#ff5f7312;border-color:#ff5f7330}
+.two{grid-template-columns:1.15fr .85fr}.three{grid-template-columns:1fr 1fr 1fr}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}.section-title h2{font-size:14px;margin:0}.section-title span{font-size:11px;color:var(--muted)}
+.heat{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.heat-cell{height:54px;border-radius:9px;display:grid;place-items:center;font-size:10px;font-weight:800;border:1px solid #ffffff12;position:relative}.heat-cell small{position:absolute;bottom:4px;font-size:8px;font-weight:500;opacity:.7}
+.h1{background:#35d39a18}.h2{background:#f5c45126}.h3{background:#ff9d5735}.h4{background:#ff5f7350}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #1a2b40;font-size:11px}th{color:var(--muted);font-weight:700}td strong{font-size:12px}.bar{height:7px;background:#15263a;border-radius:10px;overflow:hidden;min-width:80px}.bar i{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,var(--cyan),var(--purple))}
+.matrix{display:grid;grid-template-columns:1.2fr repeat(4,1fr);font-size:10px}.matrix>div{padding:9px;border-bottom:1px solid #1a2b40}.matrix .head{color:var(--muted);font-weight:700}.dot{width:9px;height:9px;border-radius:50%;display:inline-block}.high{background:var(--red)}.med{background:var(--orange)}.low{background:var(--green)}
+.radar-wrap{display:grid;place-items:center;min-height:285px}.radar{width:250px;height:250px}.radar polygon{fill:#45d6ff14;stroke:#45d6ff;stroke-width:1.4}.radar line{stroke:#2b4058;stroke-width:1}.radar text{fill:#8ea3bd;font-size:9px}
+.profile{display:grid;grid-template-columns:86px 1fr;gap:15px;align-items:center}.avatar{width:86px;height:86px;border-radius:23px;background:linear-gradient(145deg,#1b4567,#1a2350);display:grid;place-items:center;font-size:35px;border:1px solid #32607d}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.chip{padding:5px 8px;border-radius:999px;background:#13263c;border:1px solid #233c56;color:#bdd0e4;font-size:10px}
+.asset{display:flex;gap:11px;align-items:center;padding:11px 0;border-bottom:1px solid #1a2b40}.asset:last-child{border:0}.asset-icon{width:34px;height:34px;border-radius:9px;background:#13263c;display:grid;place-items:center}.asset b{font-size:12px}.asset p{margin:2px 0 0;color:var(--muted);font-size:10px}
+.sim{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}.slider{width:100%;accent-color:var(--cyan)}.sim-result{min-width:190px;text-align:right}.sim-result strong{font-size:24px}
+.plan{display:grid;gap:9px}.plan-item{display:grid;grid-template-columns:25px 1fr auto;gap:9px;align-items:center;padding:11px;border:1px solid #1a2b40;border-radius:10px;background:#0b192a}.num{width:25px;height:25px;border-radius:8px;display:grid;place-items:center;background:#14314a;color:var(--cyan);font-size:10px;font-weight:800}.plan-item b{font-size:11px}.plan-item p{margin:2px 0 0;color:var(--muted);font-size:10px}
+.verdict{background:linear-gradient(135deg,#0d2334,#101d3d);border-color:#28516a}.verdict h2{margin:0 0 7px;font-size:20px}.verdict p{color:#b9cbe0;margin:0}.fact{color:var(--cyan);font-weight:700}.estimate{color:var(--yellow);font-weight:700}
+.footer{padding:18px 2px 4px;color:#61768e;font-size:10px;text-align:center}
+.toast{position:fixed;right:20px;bottom:20px;background:#10243a;border:1px solid #2b506b;color:#dcecff;padding:11px 14px;border-radius:10px;opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:none}
+@media(max-width:1100px){.app{grid-template-columns:1fr}.sidebar{display:none}.metrics{grid-template-columns:repeat(2,1fr)}.two,.three{grid-template-columns:1fr}}
+@media(max-width:620px){.main{padding:16px}.metrics{grid-template-columns:1fr 1fr}.top{display:block}.actions{margin-top:15px}.heat{grid-template-columns:repeat(3,1fr)}.matrix{overflow:auto;display:grid;grid-template-columns:150px repeat(4,90px)}.card{padding:14px}.big{font-size:31px}}
+</style>
+
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">◈</div> Privacy Intelligence</div>
+    <div class="nav">
+      <button class="active" data-target="overview">◉ Overview</button>
+      <button data-target="exposure">◌ Exposure</button>
+      <button data-target="companies">▦ Companies</button>
+      <button data-target="data">⌁ Data Assets</button>
+      <button data-target="simulator">◇ Simulator</button>
+    </div>
+    <div class="side-note"><b>Privacy-first analysis</b><br><br>Facts come only from the supplied application list. Behavioural conclusions are estimates, not certainty.</div>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <div>
+        <div class="eyebrow">Digital footprint intelligence</div>
+        <h1>Privacy Exposure Dashboard</h1>
+        <p class="sub">A browser-based analysis of the reported digital footprint. Designed as an estimate engine — not a private-data lookup.</p>
+      </div>
+      <div class="actions">
+        <button class="btn" id="reset">Reset view</button>
+        <button class="btn primary" id="improve">Run improvement simulation</button>
+      </div>
+    </header>
+
+    <section id="overview" class="grid metrics">
+      <div class="card metric"><div class="label">Digital Footprint Score</div><div class="big">78<span class="unit">/100</span></div><span class="badge orange">Significant</span></div>
+      <div class="card metric"><div class="label">Privacy Score</div><div class="big">48<span class="unit">/100</span></div><span class="badge orange">Fair</span></div>
+      <div class="card metric"><div class="label">Services Used</div><div class="big">15</div><span class="badge yellow">Fact</span></div>
+      <div class="card metric"><div class="label">Parent Companies</div><div class="big">10</div><span class="badge yellow">Inferred</span></div>
+    </section>
+
+    <section class="grid two">
+      <div class="card" id="exposure">
+        <div class="section-title"><h2>Exposure Heatmap</h2><span>Estimated surface by data domain</span></div>
+        <div class="heat">
+          <div class="heat-cell h4">Social<small>High</small></div><div class="heat-cell h4">Identity<small>High</small></div><div class="heat-cell h3">Entertainment<small>High</small></div><div class="heat-cell h3">Shopping<small>Med–High</small></div><div class="heat-cell h2">Payments<small>Medium</small></div>
+          <div class="heat-cell h3">Messaging<small>High</small></div><div class="heat-cell h2">Photos<small>Medium</small></div><div class="heat-cell h4">Advertising<small>High</small></div><div class="heat-cell h2">Search<small>Medium</small></div><div class="heat-cell h1">Mobility<small>Low*</small></div>
+          <div class="heat-cell h2">Gaming<small>Medium</small></div><div class="heat-cell h2">Audio<small>Medium</small></div><div class="heat-cell h3">Commerce<small>Med–High</small></div><div class="heat-cell h1">Travel<small>Low*</small></div><div class="heat-cell h2">Cloud Data<small>Medium</small></div>
+        </div>
+        <p style="color:var(--muted);font-size:10px;margin:12px 0 0">*Estimate. No direct mobility or travel service was listed. “Estimated Tracking Surface” is <b style="color:#fff">High</b> because the footprint spans social, search, commerce, payments, entertainment and communication ecosystems.</p>
+      </div>
+
+      <div class="card" id="companies">
+        <div class="section-title"><h2>Company Exposure Ranking</h2><span>Inferred parent-company grouping</span></div>
+        <table><thead><tr><th>Company</th><th>Services</th><th>Exposure</th></tr></thead><tbody id="companyRows"></tbody></table>
+      </div>
+    </section>
+
+    <section class="grid two" style="margin-top:16px">
+      <div class="card" id="data">
+        <div class="section-title"><h2>Data Collection Matrix</h2><span>Likelihood estimates</span></div>
+        <div class="matrix">
+          <div class="head">Domain</div><div class="head">Social</div><div class="head">Commerce</div><div class="head">Payments</div><div class="head">Content</div>
+          <div>Identity / account</div><div><span class="dot high"></span></div><div><span class="dot med"></span></div><div><span class="dot high"></span></div><div><span class="dot med"></span></div>
+          <div>Activity / interactions</div><div><span class="dot high"></span></div><div><span class="dot med"></span></div><div><span class="dot low"></span></div><div><span class="dot high"></span></div>
+          <div>Device / technical</div><div><span class="dot high"></span></div><div><span class="dot med"></span></div><div><span class="dot med"></span></div><div><span class="dot med"></span></div>
+          <div>Purchase / transaction</div><div><span class="dot low"></span></div><div><span class="dot high"></span></div><div><span class="dot high"></span></div><div><span class="dot low"></span></div>
+          <div>Location</div><div><span class="dot med"></span></div><div><span class="dot med"></span></div><div><span class="dot med"></span></div><div><span class="dot low"></span></div>
+        </div>
+        <p style="color:var(--muted);font-size:10px;margin-bottom:0">Legend: <span class="fact">●</span> high likelihood estimate · <span class="estimate">●</span> medium likelihood estimate · <span style="color:var(--green)">●</span> lower likelihood estimate.</p>
+      </div>
+
+      <div class="card">
+        <div class="section-title"><h2>Risk Radar</h2><span>Estimated relative risk</span></div>
+        <div class="radar-wrap">
+          <svg class="radar" viewBox="0 0 250 250">
+            <g transform="translate(125 125)">
+              <polygon points="0,-92 87,-28 54,74 -54,74 -87,-28"/>
+              <polygon points="0,-62 58,-19 36,50 -36,50 -58,-19" fill="none" stroke="#29415c"/>
+              <polygon points="0,-35 33,-11 19,29 -19,29 -33,-11" fill="none" stroke="#29415c"/>
+              <line x1="0" y1="0" x2="0" y2="-95"/><line x1="0" y1="0" x2="90" y2="-29"/><line x1="0" y1="0" x2="56" y2="77"/><line x1="0" y1="0" x2="-56" y2="77"/><line x1="0" y1="0" x2="-90" y2="-29"/>
+              <polygon points="0,-82 68,-22 43,58 -30,41 -72,-24"/>
+              <text x="-18" y="-103">Tracking</text><text x="84" y="-31">Identity</text><text x="59" y="91">Commerce</text><text x="-69" y="91">Messaging</text><text x="-102" y="-31">Profiling</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid three" style="margin-top:16px">
+      <div class="card">
+        <div class="section-title"><h2>Digital Twin Profile</h2><span>Estimates only</span></div>
+        <div class="profile"><div class="avatar">◉</div><div><b>Multi-platform digital user</b><p style="color:var(--muted);font-size:11px;margin:3px 0">A broad digital footprint across communication, entertainment, social, commerce and payments.</p><div class="chips"><span class="chip">Social-heavy</span><span class="chip">Mobile-first*</span><span class="chip">Commerce-active*</span><span class="chip">Gaming*</span></div></div></div>
+      </div>
+      <div class="card">
+        <div class="section-title"><h2>Most Valuable Data Assets</h2><span>Estimated value to ecosystems</span></div>
+        <div id="assets"></div>
+      </div>
+      <div class="card">
+        <div class="section-title"><h2>WOW Insights</h2><span>Derived from facts</span></div>
+        <div class="asset"><div class="asset-icon">◎</div><div><b>Cross-ecosystem concentration</b><p>Several listed services belong to a relatively small number of large technology ecosystems.</p></div></div>
+        <div class="asset"><div class="asset-icon">↗</div><div><b>Identity + content overlap</b><p>Search, photos, social and entertainment can create a richer estimated activity profile.</p></div></div>
+        <div class="asset"><div class="asset-icon">⌁</div><div><b>Commerce signal</b><p>Shopping plus payments creates an estimated transaction-related surface.</p></div></div>
+      </div>
+    </section>
+
+    <section class="card" id="simulator" style="margin-top:16px">
+      <div class="section-title"><h2>Privacy Improvement Simulator</h2><span>Interactive estimate — not a guarantee</span></div>
+      <div class="sim">
+        <div><input id="reduce" class="slider" type="range" min="0" max="60" value="0"><div style="display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-top:5px"><span>Current footprint</span><span>Reduce unused services →</span></div></div>
+        <div class="sim-result"><div class="label">Estimated privacy score</div><strong id="simScore">48</strong><span class="unit">/100</span></div>
+      </div>
+    </section>
+
+    <section class="grid two" style="margin-top:16px">
+      <div class="card">
+        <div class="section-title"><h2>Privacy Improvement Plan</h2><span>Practical next steps</span></div>
+        <div class="plan">
+          <div class="plan-item"><div class="num">01</div><div><b>Audit inactive accounts</b><p>Remove or deactivate services that are no longer needed.</p></div><span class="badge green">High impact</span></div>
+          <div class="plan-item"><div class="num">02</div><div><b>Review app permissions</b><p>Check camera, microphone, photos, contacts and location access.</p></div><span class="badge green">High impact</span></div>
+          <div class="plan-item"><div class="num">03</div><div><b>Reduce cross-app tracking</b><p>Review advertising, personalization and activity-history settings.</p></div><span class="badge yellow">Medium</span></div>
+          <div class="plan-item"><div class="num">04</div><div><b>Protect account recovery</b><p>Use strong unique passwords and multi-factor authentication where available.</p></div><span class="badge yellow">Medium</span></div>
+        </div>
+      </div>
+      <div class="card verdict">
+        <div class="eyebrow">Final Verdict</div>
+        <h2>Significant digital exposure, with room to reduce it.</h2>
+        <p>The supplied list contains <span class="fact">15 factual services</span> spanning multiple ecosystems. The resulting <span class="estimate">scores and behavioural insights are estimates</span> based only on those services and general product-category knowledge. No private database or private account information was accessed.</p>
+        <div class="chips" style="margin-top:17px"><span class="chip">Ecosystem concentration: 82/100*</span><span class="chip">Tracking surface: High*</span><span class="chip">Confidence: Dataset-limited</span></div>
+      </div>
+    </section>
+
+    <div class="footer">Cybersecurity dashboard concept · Facts are limited to the supplied dataset · Estimates are not certainty · No private databases accessed</div>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const services=[
+ ["Instagram","Meta"],["Snapchat","Snap"],["TikTok","ByteDance"],["YouTube","Google"],["Discord","Discord"],["WhatsApp","Meta"],["iMessage","Apple"],["Spotify","Spotify"],["Roblox","Roblox"],["PUBG Mobile","Krafton/Tencent*"],["Amazon","Amazon"],["Meesho","Meesho"],["Google Search","Google"],["Google Pay","Google"],["Google Photos","Google"]
+];
+const companyData=[
+ ["Google",["YouTube","Google Search","Google Pay","Google Photos"],92],
+ ["Meta",["Instagram","WhatsApp"],82],
+ ["Amazon",["Amazon"],62],
+ ["ByteDance",["TikTok"],60],
+ ["Apple",["iMessage"],48],
+ ["Snap",["Snapchat"],43],
+ ["Krafton/Tencent*",["PUBG Mobile"],42],
+ ["Spotify",["Spotify"],37],
+ ["Discord",["Discord"],35],
+ ["Roblox",["Roblox"],33],
+ ["Meesho",["Meesho"],31]
+];
+const rows=document.getElementById("companyRows");
+companyData.forEach(([name,items,score])=>{
+ const tr=document.createElement("tr");
+ tr.innerHTML=`<td><strong>${name}</strong></td><td>${items.length}</td><td><div class="bar"><i style="width:${score}%"></i></div></td>`;
+ rows.appendChild(tr);
+});
+const assets=[
+ ["Identity signals","Accounts, profiles and identifiers across services.","High*"],
+ ["Social graph","Connections, interactions and communication patterns.","High*"],
+ ["Search & content","Queries, viewing and content-interest signals.","High*"],
+ ["Transaction signals","Shopping and payment-related activity.","High*"],
+ ["Photos & media","User-generated visual/media content.","Medium*"]
+];
+const assetBox=document.getElementById("assets");
+assets.forEach(([a,b,c])=>assetBox.insertAdjacentHTML("beforeend",`<div class="asset"><div class="asset-icon">◆</div><div><b>${a}</b><p>${b}</p><span class="badge orange">${c}</span></div></div>`));
+
+const slider=document.getElementById("reduce"), sim=document.getElementById("simScore");
+function updateSim(){sim.textContent=Math.min(89,48+Math.round(slider.value*.68));}
+slider.addEventListener("input",updateSim);
+
+document.querySelectorAll(".nav button").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+   document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");
+   document.getElementById(btn.dataset.target).scrollIntoView({behavior:"smooth",block:"start"});
+ });
+});
+const toast=document.getElementById("toast");
+function showToast(msg){toast.textContent=msg;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),2200)}
+document.getElementById("improve").onclick=()=>{slider.value=35;updateSim();document.getElementById("simulator").scrollIntoView({behavior:"smooth"});showToast("Improvement simulation updated");};
+document.getElementById("reset").onclick=()=>{slider.value=0;updateSim();window.scrollTo({top:0,behavior:"smooth"});showToast("Dashboard reset");};
+</script>
